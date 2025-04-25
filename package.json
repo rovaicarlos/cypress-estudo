@@ -1,0 +1,14 @@
+{
+  "name": "cypress-estudo",
+  "version": "1.0.0",
+  "description": "Repositorio de aprendizado utilizando Cypress e SauceDemo",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress open"
+  },
+  "keywords": [
+    "cypress"
+  ],
+  "author": "Carlos",
+  "license": "MIT"
+}
