@@ -9,7 +9,7 @@ dotenv.config({
 
 const e2e = {
   ...baseConfig.e2e,
-  baseUrl: process.env.BASE_URL,
+  baseUrl: 'https://www.saucedemo.com',
   env: {
     username: process.env.USER,
     password: process.env.PASSWORD
