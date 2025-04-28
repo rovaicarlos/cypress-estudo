@@ -1,0 +1,135 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2025-04-28T17:45:17.275Z",
+    "end": "2025-04-28T17:45:18.791Z",
+    "duration": 1516,
+    "testsRegistered": 2,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 1,
+    "hasSkipped": true
+  },
+  "results": [
+    {
+      "uuid": "d26bcd9e-c904-435c-8f12-7778f2651177",
+      "title": "",
+      "fullFile": "cypress\\e2e\\carrinho\\carrinho.cy.js",
+      "file": "cypress\\e2e\\carrinho\\carrinho.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "b1af831c-ed42-41d6-a2dc-8adc9b37bbd4",
+          "title": "Carrinho",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Adicionar produto ao carrinho com sucesso",
+              "fullTitle": "Carrinho Adicionar produto ao carrinho com sucesso",
+              "timedOut": null,
+              "duration": 1484,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "// Act\nconst qtdItensAdicionados = 1;\n_inventory.default.adicionarProduto('Sauce Labs Backpack');\n// Assert\n_header.default.ValidarQueCarrinhoPossuiItens(1);\n_cart.default.validarProdutoPresenteNoCarrinho('Sauce Labs Backpack');",
+              "err": {
+                "message": "CypressError: `cy.type()` can only accept a string or number. You passed in: `undefined`\n\nhttps://on.cypress.io/type\n\nBecause this error occurred during a `before each` hook we are skipping the remaining tests in the current suite: `Carrinho`",
+                "estack": "CypressError: `cy.type()` can only accept a string or number. You passed in: `undefined`\n\nhttps://on.cypress.io/type\n\nBecause this error occurred during a `before each` hook we are skipping the remaining tests in the current suite: `Carrinho`\n    at Context.type (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:115430:68)\n    at wrapped (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:140155:19)\nFrom Your Spec Code:\n    at Login.preencherCredenciasValidas (webpack://cypress-estudo/./cypress/pages/Login/index.js:14:27)\n    at Context.eval (webpack://cypress-estudo/./cypress/e2e/carrinho/carrinho.cy.js:12:13)",
+                "diff": null
+              },
+              "uuid": "fbda8444-ff38-4f32-a676-80abe3aaed04",
+              "parentUUID": "b1af831c-ed42-41d6-a2dc-8adc9b37bbd4",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Remover produto do carrinho com sucesso",
+              "fullTitle": "Carrinho Remover produto do carrinho com sucesso",
+              "timedOut": null,
+              "duration": 0,
+              "state": "skipped",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Arrange   \n_inventory.default.adicionarProduto('Sauce Labs Backpack');\n// Act\n_inventory.default.removerProduto('Sauce Labs Backpack');\n// Assert\n_header.default.ValidarQueCarrinhoNaoPossuiItens();",
+              "err": {},
+              "uuid": "d44f104b-10f9-466b-b6ce-1b8c8dac5507",
+              "parentUUID": "b1af831c-ed42-41d6-a2dc-8adc9b37bbd4",
+              "isHook": false,
+              "skipped": true
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "fbda8444-ff38-4f32-a676-80abe3aaed04"
+          ],
+          "pending": [],
+          "skipped": [
+            "d44f104b-10f9-466b-b6ce-1b8c8dac5507"
+          ],
+          "duration": 1484,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "charts": true,
+        "reportPageTitle": "Relatorio de testes",
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "saveAllAttempts": false,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress\\reports\\html\\.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

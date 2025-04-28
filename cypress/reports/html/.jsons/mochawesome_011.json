@@ -1,0 +1,130 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-04-28T17:53:58.511Z",
+    "end": "2025-04-28T17:54:00.116Z",
+    "duration": 1605,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "13a8f63b-96f5-4026-9f97-ad92f7e90fdc",
+      "title": "",
+      "fullFile": "cypress\\e2e\\login\\login.cy.js",
+      "file": "cypress\\e2e\\login\\login.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "10a6195c-332a-4665-b611-78c64538980c",
+          "title": "Login",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Realizar login com sucesso",
+              "fullTitle": "Login Realizar login com sucesso",
+              "timedOut": null,
+              "duration": 859,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_Login.default.preencherCredenciasValidas();\n_inventory.default.validarAcessoPagina();",
+              "err": {},
+              "uuid": "941ded85-43ad-49b0-a3f8-377f902c7212",
+              "parentUUID": "10a6195c-332a-4665-b611-78c64538980c",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Realizar login com credenciais inválidas",
+              "fullTitle": "Login Realizar login com credenciais inválidas",
+              "timedOut": null,
+              "duration": 694,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Act\n_Login.default.preencherCredenciasInvalidas();\n// Assert\n_Login.default.validarErroCredenciaisInvalida();\n_Login.default.validarAcessoPagina();",
+              "err": {},
+              "uuid": "e2eae89c-cb0b-4d23-9a04-d4fcdae9fb04",
+              "parentUUID": "10a6195c-332a-4665-b611-78c64538980c",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "941ded85-43ad-49b0-a3f8-377f902c7212",
+            "e2eae89c-cb0b-4d23-9a04-d4fcdae9fb04"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1553,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "charts": true,
+        "reportPageTitle": "Relatorio de testes",
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "saveAllAttempts": false,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress\\reports\\html\\.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
