@@ -1,4 +1,4 @@
-import Inventory from "../../pages/inventory";
+import Inventory from "../../pages/Inventory";
 import Login from "../../pages/Login"
 
 

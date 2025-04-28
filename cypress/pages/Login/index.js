@@ -1,3 +1,4 @@
+import { env } from "process";
 import { elements as ele} from "./element";
 
 class Login {
@@ -11,7 +12,9 @@ class Login {
       
   }
     preencherCredenciasValidas() {
-      cy.get(ele.username).type(Cypress.env('username'));
+      cy.log('Variáveis de ambiente:', Cypress.env());
+
+      cy.get(ele.username).type(Cypress.env('username'))
 
       cy.get(ele.password).type(Cypress.env('password'))
 
