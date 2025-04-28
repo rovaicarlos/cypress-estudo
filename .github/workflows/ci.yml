@@ -21,12 +21,12 @@ jobs:
 
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
-        with:
-          command: npm run cy:run:dev
         env:
-          BASE_URL: https://www.saucedemo.com
+          BASE_URL: ${{ secrets.URL }}
           USERNAME_DEV: ${{ secrets.USER_DEV }}
           PASSWORD_DEV: ${{ secrets.PASSWORD_DEV }}
+        with:
+          command: npm run cy:run:dev
 
       - name: Upload test reports
         uses: actions/upload-artifact@v4
