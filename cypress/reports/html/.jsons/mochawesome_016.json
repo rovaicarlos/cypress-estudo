@@ -1,0 +1,130 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-04-28T18:13:13.471Z",
+    "end": "2025-04-28T18:13:16.753Z",
+    "duration": 3282,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "c7f0e147-de19-49a7-91ad-6177203947a6",
+      "title": "",
+      "fullFile": "cypress\\e2e\\carrinho\\carrinho.cy.js",
+      "file": "cypress\\e2e\\carrinho\\carrinho.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "3bc3eb2c-c456-4b79-8227-8895b44a791a",
+          "title": "Carrinho",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Adicionar produto ao carrinho com sucesso",
+              "fullTitle": "Carrinho Adicionar produto ao carrinho com sucesso",
+              "timedOut": null,
+              "duration": 1965,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Act\nconst qtdItensAdicionados = 1;\n_inventory.default.adicionarProduto('Sauce Labs Backpack');\n// Assert\n_header.default.ValidarQueCarrinhoPossuiItens(1);\n_cart.default.validarProdutoPresenteNoCarrinho('Sauce Labs Backpack');",
+              "err": {},
+              "uuid": "e49395b9-0ad8-4892-90de-037d8eb51888",
+              "parentUUID": "3bc3eb2c-c456-4b79-8227-8895b44a791a",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Remover produto do carrinho com sucesso",
+              "fullTitle": "Carrinho Remover produto do carrinho com sucesso",
+              "timedOut": null,
+              "duration": 1263,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Arrange   \n_inventory.default.adicionarProduto('Sauce Labs Backpack');\n// Act\n_inventory.default.removerProduto('Sauce Labs Backpack');\n// Assert\n_header.default.ValidarQueCarrinhoNaoPossuiItens();",
+              "err": {},
+              "uuid": "de7504f0-9f59-4e75-bf31-8b14b494ee13",
+              "parentUUID": "3bc3eb2c-c456-4b79-8227-8895b44a791a",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "e49395b9-0ad8-4892-90de-037d8eb51888",
+            "de7504f0-9f59-4e75-bf31-8b14b494ee13"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 3228,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "charts": true,
+        "reportPageTitle": "Relatorio de testes",
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "saveAllAttempts": false,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress\\reports\\html\\.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

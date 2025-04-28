@@ -25,7 +25,7 @@ jobs:
           command: npm run cy:run:dev
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
-          USERNAME_DEV: ${{ secrets.USERNAME_DEV }}
+          USERNAME_DEV: ${{ secrets.USER_DEV }}
           PASSWORD_DEV: ${{ secrets.PASSWORD_DEV }}
 
       - name: Upload test reports
