@@ -8,11 +8,11 @@ dotenv.config({
 })
 
 const e2e = {
-    baseUrl: process.env.BASE_URL, // Adicione isso também
-    env: {
-        username: process.env.USER_DEV, // Corrigido para USER_DEV
-        password: process.env.PASSWORD_DEV // Corrigido para PASSWORD_DEV
-    }
+        baseUrl: process.env.BASE_URL || Cypress.env('BASE_URL'),
+        env: {
+          username: process.env.USERNAME || Cypress.env('USERNAME'),
+          password: process.env.PASSWORD || Cypress.env('PASSWORD')
+        }
 }
 
 module.exports = defineConfig({

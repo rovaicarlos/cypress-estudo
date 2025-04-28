@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "npx cypress open",
-    "cypress:open:dev": "cypress open --config-file config-dev.js --browser chrome",
+    "cypress:open:dev": "cypress open --env configFile=dev",
+    "cypress:run:dev": "cypress run --env configFile=dev",
     "cypress:open:qa": "cypress open --config-file config-qa.js --browser chrome"
   },
   "keywords": [
