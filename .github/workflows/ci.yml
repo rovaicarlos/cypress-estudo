@@ -25,8 +25,8 @@ jobs:
           command: npm run cypress:run:dev
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
-          USERNAME: ${{ secrets.USERNAME_DEV }}
-          PASSWORD: ${{ secrets.PASSWORD_DEV }}
+          USERNAME_DEV: ${{ secrets.USERNAME_DEV }}
+          PASSWORD_DEV: ${{ secrets.PASSWORD_DEV }}
 
       - name: Upload test reports
         uses: actions/upload-artifact@v4
