@@ -10,20 +10,13 @@ dotenv.config({
 
 // Configuração principal
 const e2e = {
-  baseUrl: process.env.URL || process.env.BASE_URL, // Compatibilidade com ambos
+  baseUrl: process.env.URL || 'https://www.saucedemo.com', // Compatibilidade com ambos
   env: {
-    username: process.env.USUARIO || process.env.USER, // Usa USUARIO (GitHub) ou USER (local)
-    password: process.env.SENHA || process.env.PASSWORD // Usa SENHA (GitHub) ou PASSWORD (local)
+    username: process.env.USUARIO || 'standard_user', // Usa USUARIO (GitHub) ou USER (local)
+    password: process.env.SENHA || 'secret_sauce' // Usa SENHA (GitHub) ou PASSWORD (local)
   }
 }
 
-  console.log('Variáveis carregadas:', 
-  {
-    URL: process.env.URL,
-    USUARIO: process.env.USUARIO,
-    SENHA: process.env.SENHA
-  })
-  
 module.exports = defineConfig({
   ...baseConfig,
   e2e

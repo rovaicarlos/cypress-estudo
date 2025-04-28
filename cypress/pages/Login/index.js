@@ -12,10 +12,6 @@ class Login {
       
   }
     preencherCredenciasValidas() {
-      cy.log(`Username: ${Cypress.env('username')}`)
-      cy.log(`Password: ${Cypress.env('password')}`)
-
-
       cy.get(ele.username).type(Cypress.env('username'))
 
       cy.get(ele.password).type(Cypress.env('password'))

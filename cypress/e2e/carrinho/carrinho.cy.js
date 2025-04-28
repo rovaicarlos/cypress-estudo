@@ -7,9 +7,6 @@ describe('Carrinho', () => {
 
     beforeEach(() => {
         // Arrange
-        cy.log(`Username: ${Cypress.env('username')}`)
-        cy.log(`Password: ${Cypress.env('password')}`)
-      
        Login.visitarPagina();
 
        Login.preencherCredenciasValidas();
