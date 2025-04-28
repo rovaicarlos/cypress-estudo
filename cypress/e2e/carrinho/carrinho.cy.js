@@ -1,7 +1,7 @@
-import Header from '../../pages/header';
-import Inventory from '../../pages/inventory';
+import Header from '../../pages/Header';
+import Inventory from '../../pages/Inventory';
 import Login from '../../pages/Login'
-import Cart from '../../pages/cart';
+import Cart from '../../pages/Cart';
 
 describe('Carrinho', () => {
 
