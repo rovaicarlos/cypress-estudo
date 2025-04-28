@@ -23,8 +23,6 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           command: npm run cypress:run:dev
-          start: npm start
-          wait-on: 'http://localhost:3000'
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
           USERNAME: ${{ secrets.USERNAME_DEV }}
