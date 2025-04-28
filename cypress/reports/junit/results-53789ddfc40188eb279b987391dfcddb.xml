@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="1.442" tests="2" failures="1">
+  <testsuite name="Root Suite" timestamp="2025-04-28T15:01:12" tests="0" file="cypress\e2e\carrinho\carrinho.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Carrinho" timestamp="2025-04-28T15:01:12" tests="2" time="1.442" failures="1">
+    <testcase name="Carrinho &quot;before each&quot; hook for &quot;Adicionar produto ao carrinho com sucesso&quot;" time="0.000" classname="&quot;before each&quot; hook for &quot;Adicionar produto ao carrinho com sucesso&quot;">
+      <failure message="`cy.type()` can only accept a string or number. You passed in: `undefined`
+
+https://on.cypress.io/type
+
+Because this error occurred during a `before each` hook we are skipping the remaining tests in the current suite: `Carrinho`" type="CypressError"><![CDATA[CypressError: `cy.type()` can only accept a string or number. You passed in: `undefined`
+
+https://on.cypress.io/type
+
+Because this error occurred during a `before each` hook we are skipping the remaining tests in the current suite: `Carrinho`
+    at Context.type (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:115430:68)
+    at wrapped (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:140155:19)
+From Your Spec Code:
+    at Login.preencherCredenciasValidas (webpack://cypress-estudo/./cypress/pages/Login/index.js:17:27)
+    at Context.eval (webpack://cypress-estudo/./cypress/e2e/carrinho/carrinho.cy.js:12:13)]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>

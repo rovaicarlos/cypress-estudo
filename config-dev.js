@@ -1,21 +1,22 @@
-const { defineConfig } = require("cypress")
-const baseConfig = require('./cypress.config');
-const dotenv = require('dotenv');
-const path = require('path');
+const { defineConfig } = require('cypress')
+const baseConfig = require('./cypress.config')
+const dotenv = require('dotenv')
+const path = require('path')
 
 dotenv.config({
-    path: path.resolve(__dirname,'./.env.dev')
+  path: path.join(__dirname, './.env.dev')
 })
 
 const e2e = {
-        baseUrl: process.env.BASE_URL || Cypress.env('BASE_URL'),
-        env: {
-          username: process.env.USERNAME_DEV || Cypress.env('USERNAME_DEV'),
-          password: process.env.PASSWORD_DEV || Cypress.env('PASSWORD_DEV')
-        }
+  ...baseConfig.e2e,
+  baseUrl: process.env.BASE_URL,
+  env: {
+    username: process.env.USER,
+    password: process.env.PASSWORD
+  }
 }
 
 module.exports = defineConfig({
-    ...baseConfig,
-    e2e
+  ...baseConfig,
+  e2e
 })

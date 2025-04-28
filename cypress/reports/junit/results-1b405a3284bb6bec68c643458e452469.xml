@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="1.109" tests="2" failures="1">
+  <testsuite name="Root Suite" timestamp="2025-04-28T15:02:26" tests="0" file="cypress\e2e\login\login.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Login" timestamp="2025-04-28T15:02:26" tests="2" time="1.107" failures="1">
+    <testcase name="Login Realizar login com sucesso" time="0.000" classname="Realizar login com sucesso">
+      <failure message="`cy.type()` can only accept a string or number. You passed in: `undefined`
+
+https://on.cypress.io/type" type="CypressError"><![CDATA[CypressError: `cy.type()` can only accept a string or number. You passed in: `undefined`
+
+https://on.cypress.io/type
+    at Context.type (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:115430:68)
+    at wrapped (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:140155:19)
+From Your Spec Code:
+    at Login.preencherCredenciasValidas (webpack://cypress-estudo/./cypress/pages/Login/index.js:17:27)
+    at Context.eval (webpack://cypress-estudo/./cypress/e2e/login/login.cy.js:12:14)]]></failure>
+    </testcase>
+    <testcase name="Login Realizar login com credenciais inválidas" time="0.662" classname="Realizar login com credenciais inválidas">
+    </testcase>
+  </testsuite>
+</testsuites>
