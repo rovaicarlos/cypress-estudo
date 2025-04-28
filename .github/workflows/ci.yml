@@ -17,7 +17,7 @@ jobs:
           name: cypress-reports
           path: cypress/reports
           if-no-files-found: ignore 
-      - uses: action/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
           name: cypress-videos
           path: cypress/videos
