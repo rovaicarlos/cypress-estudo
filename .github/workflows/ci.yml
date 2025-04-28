@@ -24,7 +24,7 @@ jobs:
         with:
           command: npm run cy:run:dev
         env:
-          BASE_URL: ${{ secrets.BASE_URL }}
+          BASE_URL: https://www.saucedemo.com
           USERNAME_DEV: ${{ secrets.USER_DEV }}
           PASSWORD_DEV: ${{ secrets.PASSWORD_DEV }}
 
