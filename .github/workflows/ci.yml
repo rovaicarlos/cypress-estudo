@@ -22,7 +22,7 @@ jobs:
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
-          command: npm run cy:open:dev
+          command: npm run cy:run:dev
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
           USERNAME_DEV: ${{ secrets.USERNAME_DEV }}
