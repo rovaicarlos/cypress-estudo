@@ -1,0 +1,135 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 1,
+    "pending": 0,
+    "failures": 1,
+    "start": "2025-04-28T22:11:32.527Z",
+    "end": "2025-04-28T22:11:33.679Z",
+    "duration": 1152,
+    "testsRegistered": 2,
+    "passPercent": 50,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "21b7b09b-46bd-45f7-9553-5916f48815f0",
+      "title": "",
+      "fullFile": "cypress\\e2e\\login\\login.cy.js",
+      "file": "cypress\\e2e\\login\\login.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "2c959f0f-d4ba-46c2-8b30-ed8a895ba621",
+          "title": "Login",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Realizar login com sucesso",
+              "fullTitle": "Login Realizar login com sucesso",
+              "timedOut": null,
+              "duration": 342,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "_Login.default.preencherCredenciasValidas();\n_Inventory.default.validarAcessoPagina();",
+              "err": {
+                "message": "CypressError: `cy.type()` can only accept a string or number. You passed in: `undefined`\n\nhttps://on.cypress.io/type",
+                "estack": "CypressError: `cy.type()` can only accept a string or number. You passed in: `undefined`\n\nhttps://on.cypress.io/type\n    at Context.type (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:115430:68)\n    at wrapped (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:140155:19)\nFrom Your Spec Code:\n    at Login.preencherCredenciasValidas (webpack://cypress-estudo/./cypress/pages/Login/index.js:17:27)\n    at Context.eval (webpack://cypress-estudo/./cypress/e2e/login/login.cy.js:12:14)",
+                "diff": null
+              },
+              "uuid": "13f7983d-25b3-493f-861d-03c98d70bd3c",
+              "parentUUID": "2c959f0f-d4ba-46c2-8b30-ed8a895ba621",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Realizar login com credenciais inválidas",
+              "fullTitle": "Login Realizar login com credenciais inválidas",
+              "timedOut": null,
+              "duration": 727,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Act\n_Login.default.preencherCredenciasInvalidas();\n// Assert\n_Login.default.validarErroCredenciaisInvalida();\n_Login.default.validarAcessoPagina();",
+              "err": {},
+              "uuid": "e6d930f3-9680-4948-a168-784d3bad9ebc",
+              "parentUUID": "2c959f0f-d4ba-46c2-8b30-ed8a895ba621",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "e6d930f3-9680-4948-a168-784d3bad9ebc"
+          ],
+          "failures": [
+            "13f7983d-25b3-493f-861d-03c98d70bd3c"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 1069,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "charts": true,
+        "reportPageTitle": "Relatorio de testes",
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "saveAllAttempts": false,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress\\reports\\html\\.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

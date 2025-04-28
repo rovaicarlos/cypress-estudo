@@ -22,11 +22,17 @@ jobs:
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         env:
-          BASE_URL: ${{ secrets.URL }}
-          USERNAME_DEV: ${{ secrets.USER_DEV }}
-          PASSWORD_DEV: ${{ secrets.PASSWORD_DEV }}
+          URL: ${{ secrets.URL }}
+          USUARIO: ${{ secrets.USUARIO }}
+          SENHA: ${{ secrets.SENHA }}
         with:
           command: npm run cy:run:dev
+
+      - name: Debug env variables
+        run: |
+          echo "BASE_URL: $URL"
+          echo "USERNAME_DEV: $USUARIO"
+          echo "PASSWORD_DEV: $SENHA"
 
       - name: Upload test reports
         uses: actions/upload-artifact@v4
