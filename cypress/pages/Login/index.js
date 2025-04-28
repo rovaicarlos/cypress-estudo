@@ -12,7 +12,9 @@ class Login {
       
   }
     preencherCredenciasValidas() {
-      cy.log('Variáveis de ambiente:', Cypress.env());
+      cy.log(`Username: ${Cypress.env('username')}`)
+      cy.log(`Password: ${Cypress.env('password')}`)
+
 
       cy.get(ele.username).type(Cypress.env('username'))
 
