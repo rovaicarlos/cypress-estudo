@@ -1,9 +1,9 @@
 name: End-to-end tests
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 jobs:
   cypress-run:
     runs-on: ubuntu-22.04
@@ -21,9 +21,9 @@ jobs:
 
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
-        with:
-          command: npm run cy:run:dev
+      - run: npm run cy:run:dev
         env:
+          URL: ${{ secrets.URL }}
           USUARIO: ${{ secrets.USUARIO }}
           SENHA: ${{ secrets.SENHA }}
 
