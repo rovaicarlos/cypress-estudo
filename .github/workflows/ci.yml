@@ -31,9 +31,9 @@ jobs:
           # Debug ANTES dos testes
       - name: Debug env variables
         run: |
-          echo "URL: $URL"
-          echo "USUARIO: $USUARIO"
-          echo "SENHA: $SENHA"
+          echo ${{ secrets.URL }} 
+          echo  ${{ secrets.USUARIO }}
+          echo ${{ secrets.SENHA }}
 
 
       - name: Upload test reports
