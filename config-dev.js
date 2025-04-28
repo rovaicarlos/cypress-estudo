@@ -7,11 +7,6 @@ dotenv.config({
   path: path.join(__dirname, './.env.dev')
 })
 
-console.log('Valor URL:', process.env.URL); // Debug
-console.log('Valor USUARIO:', process.env.USER); // Debug
-console.log('Valor SENHA:', process.env.PASSWORD); // Debug
-
-
 const e2e = {
     baseUrl: process.env.URL, // Adicione isso também
     env: {

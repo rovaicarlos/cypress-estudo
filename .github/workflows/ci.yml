@@ -19,20 +19,21 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      # Debug ANTES dos testes
+      - name: Debug env variables
+        run: |
+          echo "URL: $URL"
+          echo "USUARIO: $USUARIO"
+          echo "SENHA: $SENHA"
+
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         env:
-          URL: ${{ secrets.URL }}
+          URL: ${{ secrets.URL }} 
           USUARIO: ${{ secrets.USUARIO }}
           SENHA: ${{ secrets.SENHA }}
         with:
           command: npm run cy:run:dev
-
-      - name: Debug env variables
-        run: |
-          echo "BASE_URL: $URL"
-          echo "USERNAME_DEV: $USUARIO"
-          echo "PASSWORD_DEV: $SENHA"
 
       - name: Upload test reports
         uses: actions/upload-artifact@v4
