@@ -17,8 +17,10 @@
   "license": "MIT",
   "devDependencies": {
     "cypress-mochawesome-reporter": "^3.8.2",
+    "cypress-multi-reporters": "^2.0.5",
     "dotenv": "^16.5.0"
   },
   "dependencies": {
+    "mocha-junit-reporter": "^2.2.1"
   }
 }
