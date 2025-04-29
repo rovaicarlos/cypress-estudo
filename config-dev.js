@@ -3,16 +3,17 @@ const baseConfig = require('./cypress.config')
 const dotenv = require('dotenv')
 const path = require('path')
 
+// Carrega variáveis do arquivo .env.dev (para ambiente local)
 dotenv.config({
   path: path.join(__dirname, './.env.dev')
 })
 
+// Configuração principal
 const e2e = {
-  ...baseConfig.e2e,
-  baseUrl: 'https://www.saucedemo.com',
+  baseUrl: process.env.URL || 'https://www.saucedemo.com',
   env: {
-    username: process.env.USER,
-    password: process.env.PASSWORD
+    username: process.env.USUARIO || 'standard_user', 
+    password: process.env.SENHA || 'secret_sauce' 
   }
 }
 

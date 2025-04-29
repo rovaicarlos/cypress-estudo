@@ -1,9 +1,9 @@
 name: End-to-end tests
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 jobs:
   cypress-run:
     runs-on: ubuntu-22.04
@@ -24,9 +24,8 @@ jobs:
         with:
           command: npm run cy:run:dev
         env:
-          BASE_URL: ${{ secrets.BASE_URL }}
-          USERNAME_DEV: ${{ secrets.USERNAME_DEV }}
-          PASSWORD_DEV: ${{ secrets.PASSWORD_DEV }}
+          USUARIO: ${{ secrets.USUARIO }}
+          SENHA: ${{ secrets.SENHA }}
 
       - name: Upload test reports
         uses: actions/upload-artifact@v4
