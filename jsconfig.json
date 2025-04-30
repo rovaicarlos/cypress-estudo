@@ -1,0 +1,17 @@
+{
+    "include": [
+      "cypress/**/*.js",
+      "cypress.config.js"
+    ],
+    "compilerOptions": {
+      "target": "es6",
+      "module": "commonjs",
+      "types": ["cypress", "node"],
+      "baseUrl": "./",
+      "paths": {
+        "@/*": ["cypress/*"]
+      },
+      "checkJs": true,
+      "allowJs": true
+    }
+  }

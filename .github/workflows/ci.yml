@@ -1,12 +1,14 @@
-name: End-to-end tests
+name: Cypress Tests
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+
 jobs:
-  cypress-run:
+  test:
     runs-on: ubuntu-22.04
+      
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -19,7 +21,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run Cypress tests
+      - name: Run API Tests
+        uses: cypress-io/github-action@v6
+        with:
+          command: npm run cy:run:api  
+        env:
+          API_URL: https://serverest.dev
+
+      - name: Run Cypress Tests
         uses: cypress-io/github-action@v6
         with:
           command: npm run cy:run:dev
@@ -27,11 +36,11 @@ jobs:
           USUARIO: ${{ secrets.USUARIO }}
           SENHA: ${{ secrets.SENHA }}
 
-      - name: Upload test reports
+      - name: Upload reports
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: cypress-reports
+          name: test-reports
           path: |
             cypress/reports
             cypress/videos
