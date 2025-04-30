@@ -1,4 +1,4 @@
-name: Teste do github actions
+name: Cypress Tests
 on:
   push:
     branches: [main]
