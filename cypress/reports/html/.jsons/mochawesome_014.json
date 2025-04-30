@@ -1,0 +1,167 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-04-30T17:50:58.214Z",
+    "end": "2025-04-30T17:50:58.317Z",
+    "duration": 103,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "32c7d60f-c115-4465-8d57-eff8e04dc62d",
+      "title": "",
+      "fullFile": "cypress\\e2e\\api\\api_login.cy.js",
+      "file": "cypress\\e2e\\api\\api_login.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "fe6816bc-b715-41bd-b665-5c77790e313f",
+          "title": "API - Teste funcional de Login",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve realizar login com sucesso",
+              "fullTitle": "API - Teste funcional de Login Deve realizar login com sucesso",
+              "timedOut": null,
+              "duration": 31,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.api_login('beltrano@qa.com.br', 'teste').then(response => {\n  expect(response.status).to.equal(200);\n  expect(response.body.message).to.equal(\"Login realizado com sucesso\");\n});",
+              "err": {},
+              "uuid": "1ebbed23-d5fa-4889-9aab-3aba6c1138f8",
+              "parentUUID": "fe6816bc-b715-41bd-b665-5c77790e313f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Deve validar login com campos vazios",
+              "fullTitle": "API - Teste funcional de Login Deve validar login com campos vazios",
+              "timedOut": null,
+              "duration": 13,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.api_login('', '').then(response => {\n  expect(response.status).to.equal(400);\n  expect(response.body.email).to.equal(\"email não pode ficar em branco\");\n  expect(response.body.password).to.equal(\"password não pode ficar em branco\");\n});",
+              "err": {},
+              "uuid": "71fdbb98-d661-44ad-9eaf-f79554f8841e",
+              "parentUUID": "fe6816bc-b715-41bd-b665-5c77790e313f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Deve validar login com email inválido",
+              "fullTitle": "API - Teste funcional de Login Deve validar login com email inválido",
+              "timedOut": null,
+              "duration": 12,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.api_login('teste@ga', 'senha').then(response => {\n  expect(response.status).to.equal(400);\n  expect(response.body.email).to.equal(\"email deve ser um email válido\");\n});",
+              "err": {},
+              "uuid": "064a5c5c-3fd0-4f25-9bc3-9c1aea6b5505",
+              "parentUUID": "fe6816bc-b715-41bd-b665-5c77790e313f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Deve validar uma senha incorreta",
+              "fullTitle": "API - Teste funcional de Login Deve validar uma senha incorreta",
+              "timedOut": null,
+              "duration": 11,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.api_login('beltrano@qa.com.br', 'asdasdasd').then(response => {\n  expect(response.status).to.equal(401);\n  expect(response.body.message).to.equal(\"Email e/ou senha inválidos\");\n});",
+              "err": {},
+              "uuid": "ee72d105-e590-4d5f-a138-945b88410d7d",
+              "parentUUID": "fe6816bc-b715-41bd-b665-5c77790e313f",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "1ebbed23-d5fa-4889-9aab-3aba6c1138f8",
+            "71fdbb98-d661-44ad-9eaf-f79554f8841e",
+            "064a5c5c-3fd0-4f25-9bc3-9c1aea6b5505",
+            "ee72d105-e590-4d5f-a138-945b88410d7d"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 67,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "charts": true,
+        "reportPageTitle": "Relatorio de testes",
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "saveAllAttempts": false,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress\\reports\\html\\.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
