@@ -2,7 +2,7 @@
 Cypress.Commands.add('api_login', (user, password) => {
     cy.request({
       method: "POST",
-      url: "http://localhost:3000/login",
+      url: "https://serverest.dev/login",
       body: {
         "email": user,
         "password": password

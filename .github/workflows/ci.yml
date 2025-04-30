@@ -8,18 +8,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-22.04
-    services:
-      serverest:
-        image: paulogoncalvesbh/serverest:2.29.7
-        ports:
-          - 3000:3000
-        options: >-
-          --health-cmd "curl -f http://localhost:3000/usuarios || exit 1"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 10
-          --health-start-period 30s
-
+      
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -32,29 +21,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Wait for ServeRest
-        run: |
-          echo "Aguardando ServeRest iniciar..."
-          for i in {1..30}; do  # 30 tentativas
-            if curl -s -f http://localhost:3000/usuarios >/dev/null; then
-              echo "ServeRest está pronto após $((i*3)) segundos!"
-              exit 0
-            fi
-            sleep 3
-            echo "Aguardando... ($((i*3))s)"
-          done
-          echo "ERRO: ServeRest não iniciou após 90 segundos"
-          curl -v http://localhost:3000/usuarios  # Para diagnóstico
-          exit 1
-
       - name: Run API Tests
         uses: cypress-io/github-action@v6
         with:
           command: npm run cy:run:api  
         env:
-          API_URL: http://localhost:3000
+          API_URL: https://serverest.dev
 
-      - name: Run Cypress tests
+      - name: Run Cypress Tests
         uses: cypress-io/github-action@v6
         with:
           command: npm run cy:run:dev
