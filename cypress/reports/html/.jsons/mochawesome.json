@@ -1,24 +1,24 @@
 {
   "stats": {
     "suites": 1,
-    "tests": 1,
-    "passes": 0,
+    "tests": 2,
+    "passes": 2,
     "pending": 0,
-    "failures": 1,
-    "start": "2025-04-28T17:43:07.583Z",
-    "end": "2025-04-28T17:43:09.609Z",
-    "duration": 2026,
+    "failures": 0,
+    "start": "2025-04-30T18:29:45.886Z",
+    "end": "2025-04-30T18:29:49.916Z",
+    "duration": 4030,
     "testsRegistered": 2,
-    "passPercent": 0,
+    "passPercent": 100,
     "pendingPercent": 0,
     "other": 0,
     "hasOther": false,
-    "skipped": 1,
-    "hasSkipped": true
+    "skipped": 0,
+    "hasSkipped": false
   },
   "results": [
     {
-      "uuid": "c0865ebe-559f-469f-877b-b989d708daa1",
+      "uuid": "e33dc0fc-3f6d-448e-8061-94cac50c13c1",
       "title": "",
       "fullFile": "cypress\\e2e\\carrinho\\carrinho.cy.js",
       "file": "cypress\\e2e\\carrinho\\carrinho.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "4947ceb9-5a85-4f04-b54f-de100ad6ec7c",
+          "uuid": "46406d7c-9dff-46a8-8df3-84dce5593006",
           "title": "Carrinho",
           "fullFile": "",
           "file": "",
@@ -38,21 +38,17 @@
               "title": "Adicionar produto ao carrinho com sucesso",
               "fullTitle": "Carrinho Adicionar produto ao carrinho com sucesso",
               "timedOut": null,
-              "duration": 1998,
-              "state": "failed",
-              "speed": null,
-              "pass": false,
-              "fail": true,
+              "duration": 2320,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
               "pending": false,
               "context": null,
-              "code": "// Act\nconst qtdItensAdicionados = 1;\n_inventory.default.adicionarProduto('Sauce Labs Backpack');\n// Assert\n_header.default.ValidarQueCarrinhoPossuiItens(1);\n_cart.default.validarProdutoPresenteNoCarrinho('Sauce Labs Backpack');",
-              "err": {
-                "message": "CypressError: `cy.type()` can only accept a string or number. You passed in: `undefined`\n\nhttps://on.cypress.io/type\n\nBecause this error occurred during a `before each` hook we are skipping the remaining tests in the current suite: `Carrinho`",
-                "estack": "CypressError: `cy.type()` can only accept a string or number. You passed in: `undefined`\n\nhttps://on.cypress.io/type\n\nBecause this error occurred during a `before each` hook we are skipping the remaining tests in the current suite: `Carrinho`\n    at Context.type (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:115430:68)\n    at wrapped (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:140155:19)\nFrom Your Spec Code:\n    at Login.preencherCredenciasValidas (webpack://cypress-estudo/./cypress/pages/Login/index.js:14:27)\n    at Context.eval (webpack://cypress-estudo/./cypress/e2e/carrinho/carrinho.cy.js:12:13)",
-                "diff": null
-              },
-              "uuid": "c76cf1d0-9650-44a3-a41e-ebe9d23c4592",
-              "parentUUID": "4947ceb9-5a85-4f04-b54f-de100ad6ec7c",
+              "code": "// Act\nconst qtdItensAdicionados = 1;\n_Inventory.default.adicionarProduto('Sauce Labs Backpack');\n// Assert\n_Header.default.ValidarQueCarrinhoPossuiItens(1);\n_Cart.default.validarProdutoPresenteNoCarrinho('Sauce Labs Backpack');",
+              "err": {},
+              "uuid": "117532bb-db54-4363-9a9f-4edc0b084714",
+              "parentUUID": "46406d7c-9dff-46a8-8df3-84dce5593006",
               "isHook": false,
               "skipped": false
             },
@@ -60,31 +56,30 @@
               "title": "Remover produto do carrinho com sucesso",
               "fullTitle": "Carrinho Remover produto do carrinho com sucesso",
               "timedOut": null,
-              "duration": 0,
-              "state": "skipped",
-              "speed": null,
-              "pass": false,
+              "duration": 1651,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "// Arrange   \n_inventory.default.adicionarProduto('Sauce Labs Backpack');\n// Act\n_inventory.default.removerProduto('Sauce Labs Backpack');\n// Assert\n_header.default.ValidarQueCarrinhoNaoPossuiItens();",
+              "code": "// Arrange   \n_Inventory.default.adicionarProduto('Sauce Labs Backpack');\n// Act\n_Inventory.default.removerProduto('Sauce Labs Backpack');\n// Assert\n_Header.default.ValidarQueCarrinhoNaoPossuiItens();",
               "err": {},
-              "uuid": "0dda77c4-155c-422e-8120-0c9ac8213823",
-              "parentUUID": "4947ceb9-5a85-4f04-b54f-de100ad6ec7c",
+              "uuid": "979508aa-ea5f-4723-8c4b-196b7436d0de",
+              "parentUUID": "46406d7c-9dff-46a8-8df3-84dce5593006",
               "isHook": false,
-              "skipped": true
+              "skipped": false
             }
           ],
           "suites": [],
-          "passes": [],
-          "failures": [
-            "c76cf1d0-9650-44a3-a41e-ebe9d23c4592"
+          "passes": [
+            "117532bb-db54-4363-9a9f-4edc0b084714",
+            "979508aa-ea5f-4723-8c4b-196b7436d0de"
           ],
+          "failures": [],
           "pending": [],
-          "skipped": [
-            "0dda77c4-155c-422e-8120-0c9ac8213823"
-          ],
-          "duration": 1998,
+          "skipped": [],
+          "duration": 3971,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -118,7 +113,6 @@
     },
     "marge": {
       "options": {
-        "id": "default",
         "charts": true,
         "reportPageTitle": "Relatorio de testes",
         "embeddedScreenshots": true,

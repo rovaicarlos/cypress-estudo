@@ -1,4 +1,4 @@
-name: End-to-end tests
+name: Teste do github actions
 on:
   push:
     branches: [main]
@@ -6,15 +6,14 @@ on:
     branches: [main]
 
 jobs:
-  cypress-run:
+  test:
     runs-on: ubuntu-22.04
     services:
-      # Container do ServeRest
       serverest:
         image: paulogoncalvesbh/serverest:latest
         ports:
           - 3000:3000
-        options: --health-cmd "curl -f http://localhost:3000 || exit 1" --health-interval 10s --health-timeout 5s --health-retries 5
+        options: --health-cmd "curl -f http://localhost:3000 || exit 1"
 
     steps:
       - name: Checkout code
@@ -40,20 +39,26 @@ jobs:
           echo "ServeRest não iniciou a tempo"
           exit 1
 
+      - name: Run API Tests
+        uses: cypress-io/github-action@v6
+        with:
+          command: npm run cy:run:api  
+        env:
+          API_URL: http://localhost:3000
+
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
           command: npm run cy:run:dev
         env:
-          API_URL: http://localhost:3000
           USUARIO: ${{ secrets.USUARIO }}
           SENHA: ${{ secrets.SENHA }}
 
-      - name: Upload test reports
+      - name: Upload reports
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: cypress-reports
+          name: test-reports
           path: |
             cypress/reports
             cypress/videos

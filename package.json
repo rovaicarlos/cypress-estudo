@@ -7,8 +7,9 @@
     "test": "npx cypress open",
     "cy:open:dev": "cypress open --config-file config-dev.js",
     "cy:open:qa": "cypress open --config-file config-qa.js",
-    "cy:run:dev": "cypress run --config-file config-dev.js --browser chrome",
-    "cy:run:qa": "cypress run --config-file config-qa.js --browser chrome"
+    "cy:run:dev": "cypress run --config-file config-dev.js --browser chrome --spec \"cypress/e2e/{!(api)/**/*.cy.js,*.cy.js}\"",
+    "cy:run:qa": "cypress run --config-file config-qa.js --browser chrome",
+    "cy:run:api": "cypress run --spec \"cypress/e2e/api/**/*.cy.js\""
   },
   "keywords": [
     "cypress"

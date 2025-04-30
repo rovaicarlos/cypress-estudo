@@ -20,7 +20,7 @@ describe("Deve realizar um login e cadastrar um produto com sucesso", () => {
             authorization: bearerToken
         },
         body:{
-                "nome": faker.commerce.product(),
+                "nome": `${faker.commerce.product()} ${Date.now()}`,
                 "preco": faker.number.int({ max: 500 }),
                 "descricao": faker.commerce.productDescription(),
                 "quantidade": faker.number.int({ max: 100 })
