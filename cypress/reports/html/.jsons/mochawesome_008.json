@@ -1,0 +1,129 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-04-30T12:35:23.065Z",
+    "end": "2025-04-30T12:35:30.076Z",
+    "duration": 7011,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "6ee8e16b-4b15-4ab0-b54a-355d1da7d61f",
+      "title": "",
+      "fullFile": "cypress\\e2e\\carrinho\\carrinho.cy.js",
+      "file": "cypress\\e2e\\carrinho\\carrinho.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "4779b3c0-a743-4d75-8751-3fa2e63c3c77",
+          "title": "Carrinho",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Adicionar produto ao carrinho com sucesso",
+              "fullTitle": "Carrinho Adicionar produto ao carrinho com sucesso",
+              "timedOut": null,
+              "duration": 2873,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Act\nconst qtdItensAdicionados = 1;\n_Inventory.default.adicionarProduto('Sauce Labs Backpack');\n// Assert\n_Header.default.ValidarQueCarrinhoPossuiItens(1);\n_Cart.default.validarProdutoPresenteNoCarrinho('Sauce Labs Backpack');",
+              "err": {},
+              "uuid": "edec33dd-17b0-4a47-8eb8-b0371e281fbd",
+              "parentUUID": "4779b3c0-a743-4d75-8751-3fa2e63c3c77",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Remover produto do carrinho com sucesso",
+              "fullTitle": "Carrinho Remover produto do carrinho com sucesso",
+              "timedOut": null,
+              "duration": 4069,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Arrange   \n_Inventory.default.adicionarProduto('Sauce Labs Backpack');\n// Act\n_Inventory.default.removerProduto('Sauce Labs Backpack');\n// Assert\n_Header.default.ValidarQueCarrinhoNaoPossuiItens();",
+              "err": {},
+              "uuid": "bf2b4ba5-f45a-41d6-aa53-bbe96d1b746f",
+              "parentUUID": "4779b3c0-a743-4d75-8751-3fa2e63c3c77",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "edec33dd-17b0-4a47-8eb8-b0371e281fbd",
+            "bf2b4ba5-f45a-41d6-aa53-bbe96d1b746f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 6942,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "charts": true,
+        "reportPageTitle": "Relatorio de testes",
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "saveAllAttempts": false,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress\\reports\\html\\.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
