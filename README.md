@@ -1,3 +1,5 @@
+[![Badge ServeRest](https://img.shields.io/badge/API-ServeRest-green)](https://github.com/ServeRest/ServeRest/)
+
 # Cypress Estudo
 
 Repositório de aprendizado utilizando o Cypress utilizando o padrão de projeto Page Object Model (POM), também inclui exemplos de testes E2E (End-to-End) e testes de API.
