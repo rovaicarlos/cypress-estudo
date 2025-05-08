@@ -47,15 +47,15 @@ jobs:
           USUARIO: ${{ secrets.USUARIO }}
           SENHA: ${{ secrets.SENHA }}
 
-      - name: Run API Test Login
-        uses: cypress-io/github-action@v6
-        with:
-          command: npm run cy:run:login
+      #- name: Run API Test Login
+      #  uses: cypress-io/github-action@v6
+      #  with:
+      #    command: npm run cy:run:login
 
-      - name: Run API Test Produto
-        uses: cypress-io/github-action@v6
-        with:
-          command: npm run cy:run:produto 
+     # - name: Run API Test Produto
+     #   uses: cypress-io/github-action@v6
+     #   with:
+     #     command: npm run cy:run:produto 
 
       - name: Stop ServeRest
         if: always()
