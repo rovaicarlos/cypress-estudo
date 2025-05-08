@@ -25,14 +25,7 @@ jobs:
         run: |
           docker pull paulogoncalvesbh/serverest:latest
           docker run -d --name serverest -p 3000:3000 paulogoncalvesbh/serverest
-          sleep 10  # Espera o servidor iniciar
-
-      - name: Run API Tests
-        uses: cypress-io/github-action@v6
-        with:
-          command: npm run cy:run:api  
-        env:
-          API_URL: http://localhost:3000
+          sleep 30  # Espera o servidor iniciar
 
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v6
@@ -41,6 +34,13 @@ jobs:
         env:
           USUARIO: ${{ secrets.USUARIO }}
           SENHA: ${{ secrets.SENHA }}
+
+      - name: Run API Tests
+        uses: cypress-io/github-action@v6
+        with:
+          command: npm run cy:run:api  
+        env:
+          API_URL: http://localhost:3000/login
 
       - name: Stop ServeRest
         if: always()

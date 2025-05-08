@@ -14,7 +14,7 @@ Repositório de aprendizado utilizando o Cypress utilizando o padrão de projeto
 - Adição e remoção de itens do carrinho.
 
 ### Testes de API
-- Login via API utilizando [ServerRest](https://serverest.dev).
+- Login via API utilizando [ServerRest](l).
 - Cadastro de produtos via API com dados gerados dinamicamente pelo ```Faker.js```.
 
 ### Page Object Model (POM)
