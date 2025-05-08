@@ -31,34 +31,28 @@ jobs:
             sleep 1
           done
           echo "ServeRest is ready!"
-
+          
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v6
         with:
           command: npm run cy:run:dev
         env:
-          API_URL: http://localhost:3000
           USUARIO: ${{ secrets.USUARIO }}
           SENHA: ${{ secrets.SENHA }}
 
-          
       - name: Run API Test Login
         uses: cypress-io/github-action@v6
         with:
           command: npm run cy:run:api
-        env:
-          API_URL: http://localhost:3000/login
 
       - name: Run API Test Produto
         uses: cypress-io/github-action@v6
         with:
-          command: npm run cy:run:produto
-        env:
-          API_URL: http://localhost:3000/produtos
+          command: npm run cy:run:produto 
 
       - name: Stop ServeRest
         if: always()
-        run: docker stop serverest || true
+        run: docker stop serverest
 
       - name: Upload reports
         uses: actions/upload-artifact@v4
