@@ -50,7 +50,7 @@ jobs:
       - name: Run API Test Login
         uses: cypress-io/github-action@v6
         with:
-          command: npm run cy:run:api
+          command: npm run cy:run:login
 
       - name: Run API Test Produto
         uses: cypress-io/github-action@v6
