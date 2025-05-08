@@ -5,7 +5,7 @@ let bearerToken
 describe("Deve realizar um login e cadastrar um produto com sucesso", () => {
 
   it("Deve realizar login com sucesso", () => {
-    cy.api_login("fulano@qa.com", "teste").then((response) => {
+    cy.api_login("beltrano@qa.com", "teste").then((response) => {
       expect(response.status).to.equal(200);
       expect(response.body.message).to.equal("Login realizado com sucesso");
       bearerToken = response.body.authorization;
