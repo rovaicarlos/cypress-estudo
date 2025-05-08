@@ -13,6 +13,7 @@ const e2e = {
   baseUrl: process.env.URL || 'https://www.saucedemo.com',
   env: {
     username: process.env.USUARIO || 'standard_user', 
+    userblocked: process.env.USERBLOCKED || 'locked_out_user',
     password: process.env.SENHA || 'secret_sauce' 
   }
 }

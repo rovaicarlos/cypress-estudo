@@ -8,11 +8,16 @@ class Inventory {
     }
 
     adicionarProduto(itemName){
-        cy.get(ele.addToCart(itemName)).click();
+        cy.get(ele.addToCart(itemName)).click()
     }
 
     removerProduto(itemName){
         cy.get(ele.removeFromCart(itemName)).click()  
+    }
+
+    vaiAtePaginaDoCarrinho(){
+        cy.get(ele.iconCart).click()
+        
     }
 }
 
