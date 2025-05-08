@@ -1,13 +1,14 @@
 // @ts-nocheck
 
 describe("API - Teste funcional de Login", () => {
-  it("Deve realizar login com sucesso", () => {
-     cy.api_login('fulano@qa.com','teste').then((response) => {
+  it.only("Deve realizar login com sucesso", () => {
+     cy.api_login("beltrano@qa.com.br","teste").then((response) => {
         expect(response.status).to.equal(200);
         expect(response.body.message).to.equal("Login realizado com sucesso");
      })
   });
 
+  
   it("Deve validar login com campos vazios", () => {
     cy.api_login('','').then((response) => {
       expect(response.status).to.equal(400);

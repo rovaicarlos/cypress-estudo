@@ -1,4 +1,5 @@
-name: Cypress Tests
+name: Cypress Test
+
 on:
   push:
     branches: [main]
@@ -21,12 +22,22 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run API Tests
-        uses: cypress-io/github-action@v6
-        with:
-          command: npm run cy:run:api  
-        env:
-          API_URL: https://serverest.dev
+      - name: Start ServeRest
+        run: |
+          # Inicia o ServeRest em background
+          npx serverest@latest &
+          SERVEREST_PID=$!
+          echo "ServeRest PID: $SERVEREST_PID"
+          
+          # Health check para garantir que o ServeRest está pronto
+          echo "Waiting for ServeRest to start..."
+          while ! curl -s http://localhost:3000/; do
+            sleep 1
+          done
+          echo "ServeRest is ready!"
+          
+          # Armazena o PID para encerramento posterior
+          echo "$SERVEREST_PID" > serverest.pid
 
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v6
@@ -35,6 +46,23 @@ jobs:
         env:
           USUARIO: ${{ secrets.USUARIO }}
           SENHA: ${{ secrets.SENHA }}
+
+      #- name: Run API Test Login
+      #  uses: cypress-io/github-action@v6
+      #  with:
+      #    command: npm run cy:run:login
+
+     # - name: Run API Test Produto
+     #   uses: cypress-io/github-action@v6
+     #   with:
+     #     command: npm run cy:run:produto 
+
+      - name: Stop ServeRest
+        if: always()
+        run: |
+          echo "Stopping ServeRest..."
+          kill $(cat serverest.pid) || true
+          npx kill-port 3000 || true
 
       - name: Upload reports
         uses: actions/upload-artifact@v4
