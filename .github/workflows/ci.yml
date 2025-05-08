@@ -1,4 +1,4 @@
-name: Cypress Tests with ServeRest (NPX)
+name: Cypress Tests
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Start ServeRest using NPX
+      - name: Start ServeRest
         run: |
           # Inicia o ServeRest em background
           npx serverest@latest &
