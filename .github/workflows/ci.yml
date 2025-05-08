@@ -22,12 +22,12 @@ jobs:
         run: npm install
 
       - name: Start Serverest using Docker
-        run: docker run -d --name serverest -p 3000:3000 serverest/serverest:latest
+        run: docker run -p 3000:3000 paulogoncalvesbh/serverest:latest
   
       - name: Wait for Serverest to be ready
         run: |
           for i in {1..30}; do
-            if curl --silent http://localhost:3000/health | grep "OK"; then
+            if curl --silent http://localhost:3000/status | grep "OK"; then
               echo "Server is ready!"
               exit 0
             fi
@@ -36,7 +36,7 @@ jobs:
           done
           echo "Server failed to start in time."
           exit 1
-          
+
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v6
         with:
