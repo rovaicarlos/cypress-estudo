@@ -20,7 +20,7 @@ Repositório de aprendizado utilizando o Cypress utilizando o padrão de projeto
 ### Page Object Model (POM)
 - Organização do código utilizando o padrão de projeto POM, separando elementos da interface e ações em classes específicas.
 
-Integração Contínua
+### Integração Contínua
 Este projeto utiliza GitHub Actions para executar os testes em cada push ou pull request na branch main. O workflow está configurado no arquivo ```.github/workflows/ci.yml``` onde é feito um teste para API e outro para o E2E.
 
 ## Estrutura do Projeto
