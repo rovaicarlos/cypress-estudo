@@ -1,4 +1,5 @@
-name: Cypress Tests
+name: Cypress Tests with ServeRest (NPX)
+
 on:
   push:
     branches: [main]
@@ -21,10 +22,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Start ServeRest using Docker
+      - name: Start ServeRest using NPX
         run: |
-          docker pull paulogoncalvesbh/serverest:latest
-          docker run -d --name serverest -p 3000:3000 paulogoncalvesbh/serverest:latest
+          # Inicia o ServeRest em background
+          npx serverest@latest &
+          SERVEREST_PID=$!
+          echo "ServeRest PID: $SERVEREST_PID"
+          
           # Health check para garantir que o ServeRest está pronto
           echo "Waiting for ServeRest to start..."
           while ! curl -s http://localhost:3000/; do
@@ -32,6 +36,9 @@ jobs:
           done
           echo "ServeRest is ready!"
           
+          # Armazena o PID para encerramento posterior
+          echo "$SERVEREST_PID" > serverest.pid
+
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v6
         with:
@@ -52,7 +59,10 @@ jobs:
 
       - name: Stop ServeRest
         if: always()
-        run: docker stop serverest
+        run: |
+          echo "Stopping ServeRest..."
+          kill $(cat serverest.pid) || true
+          npx kill-port 3000 || true
 
       - name: Upload reports
         uses: actions/upload-artifact@v4
