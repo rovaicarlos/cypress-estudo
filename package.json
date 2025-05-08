@@ -9,7 +9,9 @@
     "cy:open:qa": "cypress open --config-file config-qa.js",
     "cy:run:dev": "cypress run --config-file config-dev.js --browser chrome --spec \"cypress/e2e/{!(api)/**/*.cy.js,*.cy.js}\"",
     "cy:run:qa": "cypress run --config-file config-qa.js --browser chrome",
-    "cy:run:api": "cypress run --spec \"cypress/e2e/api/**/*.cy.js\""
+    "cy:run:api": "cypress run --spec \"cypress/e2e/api/**/*.cy.js\"",
+    "cy:run:api:login": "cypress run --spec \"cypress/e2e/api/api_login.cy.js\"",
+    "cy:run:api:produto":  "cypress run --spec \"cypress/e2e/api/api_produto.cy.js\""
   },
   "keywords": [
     "cypress"
