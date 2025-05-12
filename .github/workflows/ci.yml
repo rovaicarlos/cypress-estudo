@@ -50,12 +50,12 @@ jobs:
       - name: Run API Test Login
         uses: cypress-io/github-action@v6
         with:
-          command: npm run cy:run:login
+          command: npm run cy:run:api:login
 
       - name: Run API Test Produto
         uses: cypress-io/github-action@v6
         with:
-          command: npm run cy:run:produto 
+          command: npm run cy:run:api:produto 
 
       - name: Stop ServeRest
         if: always()
