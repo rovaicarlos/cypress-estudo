@@ -1,8 +1,9 @@
+import Checkout from '../../pages/Checkout';
+import Cart from '../../pages/Cart';
 import Header from '../../pages/Header';
 import Inventory from '../../pages/Inventory';
-import Login from '../../pages/Login'
-import Cart from '../../pages/Cart';
-import Checkout from '../../pages/Checkout';
+import Login from '../../pages/Login';
+
 const { faker } = require('@faker-js/faker');
 
 describe('Cart', () => {
@@ -47,14 +48,32 @@ describe('Cart', () => {
 
         Cart.validarProdutoPresenteNoCarrinho('Sauce Labs Backpack');
 
-        Inventory.vaiAtePaginaDoCarrinho()
+        Inventory.vaiAtePaginaDoCarrinho();
 
-        Cart.clicaNoBotaoCheckout()
+        Cart.clicaNoBotaoDeCheckout();
 
-        Checkout.preencheCamposParaPagamento(faker.person.firstName(), faker.person.lastName(), faker.location.zipCode())       
+        Checkout.preencheCamposCorretosParaPagamento(faker.person.firstName(), faker.person.lastName(), faker.location.zipCode());  
 
-        Checkout.verificaValorTotalCarrinho().then((total) => {
-            expect(total);
-          });
+        Checkout.finalizaCheckout();
+
+        Checkout.verificaQueCompraFoiConcluidaComSucesso();
+    })
+
+    it('Adicionar produto ao carrinho e finaliza check out sem informações de pagamento ', () => {
+
+        Inventory.adicionarProduto('Sauce Labs Backpack');
+      
+        Header.ValidarQueCarrinhoPossuiItens(1);
+
+        Cart.validarProdutoPresenteNoCarrinho('Sauce Labs Backpack');
+
+        Inventory.vaiAtePaginaDoCarrinho();
+
+        Cart.clicaNoBotaoDeCheckout();
+
+        Checkout.naoPreencheDadosParaPagamento();  
+
+        //deve verificar que a URL não mudou para o segundo checkout 
+        Checkout.validaQueAPaginaEoCheckoutStepOne();
     })
 })
