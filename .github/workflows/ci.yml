@@ -19,69 +19,88 @@ jobs:
         with:
           node-version: 18
 
-      - name: Print environment information
+      - name: Debug Environment
         run: |
           echo "Node version: $(node -v)"
           echo "NPM version: $(npm -v)"
           echo "Current directory: $(pwd)"
           ls -la
+          echo "Checking environment variables:"
+          printenv | grep -E 'USUARIO|SENHA|CYPRESS|NODE'
 
       - name: Install dependencies
         run: npm install
         env:
           NODE_OPTIONS: --max_old_space_size=4096
 
-      - name: Start ServeRest
+      - name: Start ServeRest with Debug
         run: |
-          # Debug: Show network information
-          echo "Network information:"
-          ifconfig || ip addr
-          
-          # Start ServeRest in debug mode
           echo "Starting ServeRest..."
-          npx serverest@latest --verbose &
+          npx serverest@latest --verbose > serverest.log 2>&1 &
           SERVEREST_PID=$!
           echo "ServeRest PID: $SERVEREST_PID"
           
-          # Health check with more debugging
           echo "Waiting for ServeRest to start..."
           for i in {1..30}; do
-            echo "Attempt $i:"
-            curl -v http://localhost:3000/ || true
-            if curl -s http://localhost:3000/; then
-              echo "ServeRest is ready!"
+            echo "Attempt $i to connect to ServeRest..."
+            curl -v http://localhost:3000/ > curl.log 2>&1 || true
+            if grep -q '"status":' curl.log; then
+              echo "ServeRest is responding!"
+              cat curl.log
               break
             fi
             sleep 1
           done
           
-          # Additional check to verify ServeRest is really running
-          echo "Checking ServeRest processes:"
+          echo "ServeRest logs:"
+          cat serverest.log
+          echo "Checking processes:"
           ps aux | grep serverest || true
           echo "Checking ports:"
           netstat -tulnp || ss -tulnp || lsof -i :3000 || true
           
-          # Store PID for later
           echo "$SERVEREST_PID" > serverest.pid
 
-      - name: Run API Test Login with Debug
+      - name: Verify API Access
+        run: |
+          echo "Testing API endpoint directly..."
+          curl -v -X POST http://localhost:3000/login \
+            -H "Content-Type: application/json" \
+            -d "{\"email\": \"beltrano@qa.com.br\", \"password\": \"teste\"}" > login_test.log 2>&1
+          
+          echo "Login test result:"
+          cat login_test.log
+          echo "-----"
+          grep -q '"message":"Login realizado com sucesso"' login_test.log || (echo "Login failed!" && exit 1)
+
+      - name: Run API Test Login
         uses: cypress-io/github-action@v6
         with:
           command: npm run cy:run:api:login -- --browser chrome --headed --config video=true,trashAssetsBeforeRuns=false
+        env:
+          USUARIO: "beltrano@qa.com.br"
+          SENHA: "teste"
+          DEBUG: 'cypress:*'
+          CYPRESS_VERBOSE: 'true'
 
+      - name: Collect Debug Info
+        if: always()
+        run: |
+          echo "Final ServeRest logs:"
+          cat serverest.log
+          echo "-----"
+          echo "Final processes:"
+          ps aux | grep serverest || true
+          echo "-----"
+          echo "Environment variables:"
+          printenv
 
       - name: Stop ServeRest
         if: always()
         run: |
           echo "Stopping ServeRest..."
-          echo "Current processes before stopping:"
-          ps aux | grep serverest || true
-          echo "Attempting to stop ServeRest..."
-          kill $(cat serverest.pid) || echo "Failed to kill by PID"
-          npx kill-port 3000 || echo "Failed to kill by port"
-          echo "Verifying ServeRest is stopped:"
-          ps aux | grep serverest || true
-          netstat -tulnp || ss -tulnp || lsof -i :3000 || true
+          kill $(cat serverest.pid) || true
+          npx kill-port 3000 || true
 
       - name: Upload reports and logs
         if: always()
@@ -92,5 +111,5 @@ jobs:
             cypress/reports
             cypress/videos
             cypress/screenshots
-            cypress/logs
+            *.log
           if-no-files-found: warn
