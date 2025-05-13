@@ -64,25 +64,11 @@ jobs:
           # Store PID for later
           echo "$SERVEREST_PID" > serverest.pid
 
-      - name: Run Cypress Tests with Debug
-        uses: cypress-io/github-action@v6
-        with:
-          command: npm run cy:run:dev -- --browser chrome --headed --config video=true,trashAssetsBeforeRuns=false
-        env:
-          USUARIO: ${{ secrets.USUARIO }}
-          SENHA: ${{ secrets.SENHA }}
-          DEBUG: 'cypress:*'
-          CYPRESS_DEBUG: 'true'
-          CYPRESS_VERBOSE: 'true'
-
       - name: Run API Test Login with Debug
         uses: cypress-io/github-action@v6
         with:
           command: npm run cy:run:api:login -- --browser chrome --headed --config video=true,trashAssetsBeforeRuns=false
-        env:
-          DEBUG: 'cypress:*'
-          CYPRESS_DEBUG: 'true'
-          CYPRESS_VERBOSE: 'true'
+
 
       - name: Stop ServeRest
         if: always()

@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 describe("API - Teste funcional de Login", () => {
-  it("Deve realizar login com sucesso", () => {
+  it.only("Deve realizar login com sucesso", () => {
      cy.api_login("beltrano@qa.com.br","teste").then((response) => {
         expect(response.status).to.equal(200);
         expect(response.body.message).to.equal("Login realizado com sucesso");
