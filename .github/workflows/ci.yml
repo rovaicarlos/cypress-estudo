@@ -19,81 +19,43 @@ jobs:
         with:
           node-version: 18
 
-      - name: Debug Environment
-        run: |
-          echo "Node version: $(node -v)"
-          echo "NPM version: $(npm -v)"
-          echo "Current directory: $(pwd)"
-          ls -la
-          echo "Checking environment variables:"
-          printenv | grep -E 'USUARIO|SENHA|CYPRESS|NODE'
-
       - name: Install dependencies
         run: npm install
-        env:
-          NODE_OPTIONS: --max_old_space_size=4096
 
-      - name: Start ServeRest with Debug
+      - name: Start ServeRest
         run: |
-          echo "Starting ServeRest..."
-          npx serverest@latest --verbose > serverest.log 2>&1 &
+          # Inicia o ServeRest em background
+          npx serverest@latest &
           SERVEREST_PID=$!
           echo "ServeRest PID: $SERVEREST_PID"
           
+          # Health check para garantir que o ServeRest está pronto
           echo "Waiting for ServeRest to start..."
-          for i in {1..30}; do
-            echo "Attempt $i to connect to ServeRest..."
-            curl -v http://localhost:3000/ > curl.log 2>&1 || true
-            if grep -q '"status":' curl.log; then
-              echo "ServeRest is responding!"
-              cat curl.log
-              break
-            fi
+          while ! curl -s http://localhost:3000/; do
             sleep 1
           done
+          echo "ServeRest is ready!"
           
-          echo "ServeRest logs:"
-          cat serverest.log
-          echo "Checking processes:"
-          ps aux | grep serverest || true
-          echo "Checking ports:"
-          netstat -tulnp || ss -tulnp || lsof -i :3000 || true
-          
+          # Armazena o PID para encerramento posterior
           echo "$SERVEREST_PID" > serverest.pid
 
-      - name: Verify API Access
-        run: |
-          echo "Testing API endpoint directly..."
-          curl -v -X POST http://localhost:3000/login \
-            -H "Content-Type: application/json" \
-            -d "{\"email\": \"beltrano@qa.com.br\", \"password\": \"teste\"}" > login_test.log 2>&1
-          
-          echo "Login test result:"
-          cat login_test.log
-          echo "-----"
-          grep -q '"message":"Login realizado com sucesso"' login_test.log || (echo "Login failed!" && exit 1)
-
-      - name: Run API Test Login
+      - name: Run Cypress Tests
         uses: cypress-io/github-action@v6
         with:
-          command: npm run cy:run:api:login -- --browser chrome --headed --config video=true,trashAssetsBeforeRuns=false
+          command: npm run cy:run:dev
         env:
-          USUARIO: "beltrano@qa.com.br"
-          SENHA: "teste"
-          DEBUG: 'cypress:*'
-          CYPRESS_VERBOSE: 'true'
+          USUARIO: ${{ secrets.USUARIO }}
+          SENHA: ${{ secrets.SENHA }}
 
-      - name: Collect Debug Info
-        if: always()
-        run: |
-          echo "Final ServeRest logs:"
-          cat serverest.log
-          echo "-----"
-          echo "Final processes:"
-          ps aux | grep serverest || true
-          echo "-----"
-          echo "Environment variables:"
-          printenv
+    #  - name: Run API Test Login
+    #    uses: cypress-io/github-action@v6
+    #    with:
+    #      command: npm run cy:run:api:login
+
+    #  - name: Run API Test Produto
+    #    uses: cypress-io/github-action@v6
+    #    with:
+    #      command: npm run cy:run:api:produto 
 
       - name: Stop ServeRest
         if: always()
@@ -102,14 +64,12 @@ jobs:
           kill $(cat serverest.pid) || true
           npx kill-port 3000 || true
 
-      - name: Upload reports and logs
-        if: always()
+      - name: Upload reports
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: test-reports
           path: |
             cypress/reports
             cypress/videos
             cypress/screenshots
-            *.log
-          if-no-files-found: warn
