@@ -19,57 +19,92 @@ jobs:
         with:
           node-version: 18
 
+      - name: Print environment information
+        run: |
+          echo "Node version: $(node -v)"
+          echo "NPM version: $(npm -v)"
+          echo "Current directory: $(pwd)"
+          ls -la
+
       - name: Install dependencies
         run: npm install
+        env:
+          NODE_OPTIONS: --max_old_space_size=4096
 
       - name: Start ServeRest
         run: |
-          # Inicia o ServeRest em background
-          npx serverest@latest &
+          # Debug: Show network information
+          echo "Network information:"
+          ifconfig || ip addr
+          
+          # Start ServeRest in debug mode
+          echo "Starting ServeRest..."
+          npx serverest@latest --verbose &
           SERVEREST_PID=$!
           echo "ServeRest PID: $SERVEREST_PID"
           
-          # Health check para garantir que o ServeRest está pronto
+          # Health check with more debugging
           echo "Waiting for ServeRest to start..."
-          while ! curl -s http://localhost:3000/; do
+          for i in {1..30}; do
+            echo "Attempt $i:"
+            curl -v http://localhost:3000/ || true
+            if curl -s http://localhost:3000/; then
+              echo "ServeRest is ready!"
+              break
+            fi
             sleep 1
           done
-          echo "ServeRest is ready!"
           
-          # Armazena o PID para encerramento posterior
+          # Additional check to verify ServeRest is really running
+          echo "Checking ServeRest processes:"
+          ps aux | grep serverest || true
+          echo "Checking ports:"
+          netstat -tulnp || ss -tulnp || lsof -i :3000 || true
+          
+          # Store PID for later
           echo "$SERVEREST_PID" > serverest.pid
 
-      - name: Run Cypress Tests
+      - name: Run Cypress Tests with Debug
         uses: cypress-io/github-action@v6
         with:
-          command: npm run cy:run:dev
+          command: npm run cy:run:dev -- --browser chrome --headed --config video=true,trashAssetsBeforeRuns=false
         env:
           USUARIO: ${{ secrets.USUARIO }}
           SENHA: ${{ secrets.SENHA }}
+          DEBUG: 'cypress:*'
+          CYPRESS_DEBUG: 'true'
+          CYPRESS_VERBOSE: 'true'
 
-      - name: Run API Test Login
+      - name: Run API Test Login with Debug
         uses: cypress-io/github-action@v6
         with:
-          command: npm run cy:run:api:login
-
-      #- name: Run API Test Produto
-      #  uses: cypress-io/github-action@v6
-      #  with:
-      #    command: npm run cy:run:api:produto 
+          command: npm run cy:run:api:login -- --browser chrome --headed --config video=true,trashAssetsBeforeRuns=false
+        env:
+          DEBUG: 'cypress:*'
+          CYPRESS_DEBUG: 'true'
+          CYPRESS_VERBOSE: 'true'
 
       - name: Stop ServeRest
         if: always()
         run: |
           echo "Stopping ServeRest..."
-          kill $(cat serverest.pid) || true
-          npx kill-port 3000 || true
+          echo "Current processes before stopping:"
+          ps aux | grep serverest || true
+          echo "Attempting to stop ServeRest..."
+          kill $(cat serverest.pid) || echo "Failed to kill by PID"
+          npx kill-port 3000 || echo "Failed to kill by port"
+          echo "Verifying ServeRest is stopped:"
+          ps aux | grep serverest || true
+          netstat -tulnp || ss -tulnp || lsof -i :3000 || true
 
-      - name: Upload reports
-        uses: actions/upload-artifact@v4
+      - name: Upload reports and logs
         if: always()
+        uses: actions/upload-artifact@v4
         with:
           name: test-reports
           path: |
             cypress/reports
             cypress/videos
             cypress/screenshots
+            cypress/logs
+          if-no-files-found: warn
