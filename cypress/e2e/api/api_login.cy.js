@@ -9,7 +9,7 @@ describe("API - Teste funcional de Login", () => {
   });
 
   
-  it("Deve validar login com campos vazios", () => {
+  it(" POST - Deve validar login com campos vazios", () => {
     cy.api_login('','').then((response) => {
       expect(response.status).to.equal(400);
       expect(response.body.email).to.equal("email não pode ficar em branco");
@@ -19,14 +19,14 @@ describe("API - Teste funcional de Login", () => {
     });
   });
 
-  it("Deve validar login com email inválido", () => {
+  it("POST -  Deve validar login com email inválido", () => {
     cy.api_login('teste@ga','senha').then((response) => {
       expect(response.status).to.equal(400);
       expect(response.body.email).to.equal("email deve ser um email válido");
     });
   });
 
-  it("Deve validar uma senha incorreta", () => {
+  it("POST -  Deve validar uma senha incorreta", () => {
     cy.api_login('beltrano@qa.com.br','asdasdasd').then((response) => {
       expect(response.status).to.equal(401);
       expect(response.body.message).to.equal("Email e/ou senha inválidos");
