@@ -2,9 +2,9 @@
 const { faker } = require('@faker-js/faker');
 
 let bearerToken 
-describe("Deve realizar um login e cadastrar um produto com sucesso", () => {
+describe("API - Teste funcional de Produto", () => {
 
-  it("Deve realizar login com sucesso", () => {
+  it("POST - Deve realizar login com sucesso", () => {
     cy.api_login('beltrano@qa.com.br', 'teste').then((response) => {
       expect(response.status).to.equal(200);
       expect(response.body.message).to.equal("Login realizado com sucesso");
@@ -12,7 +12,7 @@ describe("Deve realizar um login e cadastrar um produto com sucesso", () => {
     });
   });
 
-  it('Deve cadastrar produto com sucesso' , () => {
+  it('POST - Deve cadastrar produto com sucesso' , () => {
     cy.request({
         method: 'POST',
         url: 'http://localhost:3000/produtos',
